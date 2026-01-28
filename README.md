@@ -57,8 +57,7 @@ source ~/catkin_ws/devel/setup.bash
 source /opt/ros/noetic/setup.bash
 roscore
 ```
-### Terminal-2: 
-DroidCam -> ROS /camera/image_raw
+### Terminal-2: DroidCam -> ROS /camera/image_raw
 TELEFON_IP kısmını kendi IP’n ile değiştir.
 ```
 source /opt/ros/noetic/setup.bash
