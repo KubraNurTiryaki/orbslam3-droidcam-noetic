@@ -123,6 +123,8 @@ rosrun rqt_image_view rqt_image_view /orb_slam3/tracking_image
 ```
 rosrun rqt_image_view rqt_image_view /orb_slam3/tracking_image
 ```
+![Ekran görüntüsü](gorsel/slam-points.jpeg)
+SLAM çalıştırınca yukarda göründüğü gibi yeşil işaretler oluşur
 
 ## 7) 3D Mesafe Ölçümü (RViz ile iki nokta arası)
 
