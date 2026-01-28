@@ -86,7 +86,7 @@ ORB terminalinde Camera Parameters: altında fx/fy/cx/cy görüyorsan settings d
 
 ## 4) Kamera Kalibrasyonu
 Kalibrasyon için satranç tahtası kullanılır. Kameraya yaklaştırıp uzaklaştırma, görüntüyü eğme vs gerek.
-----------------------------------------------------------BURAYA RESMİ KOYCAM
+Yeterince bilgi toplandığında calibrate butonu aktifleşecek
 
 ![Ekran görüntüsü](gorsel/skew.png)
 
