@@ -1,0 +1,27 @@
+# ROS / catkin outputs
+build/
+devel/
+install/
+logs/
+
+# ROS logs
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Bags / maps / outputs
+*.bag
+*.osa
+*.csv
+/tmp/
+
+# ORB-SLAM3 build artifacts (do NOT commit)
+orb_slam3/lib/
+orb_slam3/Thirdparty/*/lib/

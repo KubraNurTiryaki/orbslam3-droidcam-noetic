@@ -1,0 +1,46 @@
+<launch>
+  <!-- Kamera görüntüsünün ROS’ta yayınlandığı topic -->
+  <arg name="camera_image_topic" default="/camera/image_raw" />
+
+  <!-- Eğer kamera sadece compressed yayınlıyorsa: /camera/image_raw/compressed -->
+  <arg name="camera_image_compressed_topic" default="/camera/image_raw/compressed" />
+  <arg name="use_compressed" default="false" />
+
+  <!-- ORB-SLAM3 dosyaları -->
+  <arg name="voc_file" default="$(find orb_slam3_ros)/orb_slam3/Vocabulary/ORBvoc.txt.bin" />
+  <arg name="settings_file" default="$(find orb_slam3_ros)/config/Monocular/MyWebcam.yaml" />
+
+  <!-- Bazı sistemlerde Pangolin/OpenGL sorun çıkarabiliyor -->
+  <arg name="enable_pangolin" default="false" />
+
+  <!-- compressed -> raw republish -->
+  <group if="$(arg use_compressed)">
+    <node pkg="image_transport" type="republish" name="republish_compressed_to_raw"
+          args="compressed in:=$(arg camera_image_compressed_topic) raw out:=/orbslam3/image_raw" output="screen" />
+
+    <node pkg="orb_slam3_ros" type="ros_mono" name="orb_slam3" output="screen">
+      <param name="voc_file" value="$(arg voc_file)" />
+      <param name="settings_file" value="$(arg settings_file)" />
+      <param name="world_frame_id"  type="string" value="map" />
+      <param name="map_name" type="string" value="" />
+      <param name="cam_frame_id" type="string" value="camera" />
+      <param name="enable_pangolin" value="$(arg enable_pangolin)" />
+      <param name="enableNewMaps" type="bool" value="true" />
+      <remap from="/camera/image_raw" to="/orbslam3/image_raw" />
+    </node>
+  </group>
+
+  <!-- raw -> ORB-SLAM3 -->
+  <group unless="$(arg use_compressed)">
+    <node pkg="orb_slam3_ros" type="ros_mono" name="orb_slam3" output="screen">
+      <param name="voc_file" value="$(arg voc_file)" />
+      <param name="settings_file" value="$(arg settings_file)" />
+      <param name="world_frame_id"  type="string" value="map" />
+      <param name="map_name" type="string" value="" />
+      <param name="cam_frame_id" type="string" value="camera" />
+      <param name="enable_pangolin" value="$(arg enable_pangolin)" />
+      <param name="enableNewMaps" type="bool" value="true" />
+      <remap from="/camera/image_raw" to="$(arg camera_image_topic)" />
+    </node>
+  </group>
+</launch>

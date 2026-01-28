@@ -1,0 +1,20 @@
+<launch>
+  <!-- Gazebo sim time kullanıyor -->
+  <param name="use_sim_time" value="true" />
+
+  <node name="orb_slam3" pkg="orb_slam3_ros" type="ros_mono" output="screen">
+    <!-- Gazebo kamera topic -->
+    <remap from="/camera/image_raw" to="/usb_cam/usb_cam/image_raw"/>
+
+    <param name="voc_file"      type="string" value="$(find orb_slam3_ros)/orb_slam3/Vocabulary/ORBvoc.txt.bin"/>
+    <param name="settings_file" type="string" value="$(find orb_slam3_ros)/config/Monocular/Gazebo_Mono.yaml"/>
+
+    <!-- Frame isimlerini Gazebo camera_info ile hizala -->
+    <param name="world_frame_id"  type="string" value="map" />
+    <param name="map_name" type="string" value="" />
+    <param name="cam_frame_id"    type="string" value="camera_link" />
+
+    <!-- Bilgisayarı yormasın -->
+    <param name="enable_pangolin" type="bool" value="false" />
+  </node>
+</launch>
