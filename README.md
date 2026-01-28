@@ -87,6 +87,9 @@ ORB terminalinde Camera Parameters: altında fx/fy/cx/cy görüyorsan settings d
 ## 4) Kamera Kalibrasyonu
 Kalibrasyon için satranç tahtası kullanılır. Kameraya yaklaştırıp uzaklaştırma, görüntüyü eğme vs gerek.
 ----------------------------------------------------------BURAYA RESMİ KOYCAM
+
+![Ekran görüntüsü](gorsel/skew.png)
+
 ```
 rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.025 \
   image:=/camera/image_raw camera:=/camera
